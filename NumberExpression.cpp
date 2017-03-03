@@ -5,11 +5,11 @@ NumberExpression::NumberExpression (int value)
 {
 }
 
-NumberExpression::~Expression ()
+NumberExpression::~Expression (void)
 {
 }
 
-int NumberExpression::getValue ()
+int NumberExpression::getValue (void)
 {
   return this->value_;
 }
