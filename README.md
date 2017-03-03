@@ -11,17 +11,19 @@ and recursively build a Composite expression structure.
 
 # Objects / Interfaces
 - ExpressionBuilder
-- Expr (Interface)
-    - NumberExpr (Object)
-    - OperatorExpr (Interface)
-        - UnaryOperatorExpr (Abstract)
-            - NegateOperatorExpr (Object)
-        - BinaryOperatorExpr (Abstract)
-            - AddOperatorExpr (Object)
-            - SubOperatorExpr (Object)
-            - MultiplyOperatorExpr (Object)
-            - DivideOperatorExpr (Object)
-                - DivideByZeroException (Object)
+- Expression (Interface)
+    - NumberExpression (Object)
+    - UnaryOperatorExpression (Object)
+    - BinaryOperatorExpression (Object)
+- Operator (Interface)
+    - UnaryOperator (Interface)
+        - NegateOperator (Object)
+    - BinaryOperator (Interface)
+        - AddOperator (Object)
+        - SubOperator (Object)
+        - MultiplyOperator (Object)
+        - DivideOperator (Object)
+            - DivideByZeroException (Object)
 
 ## ExpressionBuilder
 ### Properties
