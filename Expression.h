@@ -8,6 +8,9 @@ class Expression
     // destructor
     virtual ~Expression (void) = 0;
 
+    // returns result of expression
+    int evaluate (void) = 0;
+
   protected:
 
     // prevents instantiation

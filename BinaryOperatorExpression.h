@@ -7,9 +7,11 @@ class BinaryOperatorExpression : public Expression
 {
   public:
 
-    BinaryOperatorExpression (void);
+    BinaryOperatorExpression (Expression * left_operand, Expression * right_operand, BinaryOperator * op);
 
     ~BinaryOperatorExpression (void);
+
+    int evaluate (void);
 
   private:
 
@@ -17,8 +19,7 @@ class BinaryOperatorExpression : public Expression
 
     Expression * right_operand_;
 
-    BinaryOperatorExpression operator_;
-
+    BinaryOperator * operator_;
 };
 
 #endif //EXPRESSION_CALCULATOR_BINARYOPERATOREXPRESSION_H
