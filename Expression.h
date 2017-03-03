@@ -1,7 +1,8 @@
 #ifndef EXPRESSION_CALCULATOR_EXPRESSION_H
 #define EXPRESSION_CALCULATOR_EXPRESSION_H
 
-class Expression {
+class Expression
+{
   public:
 
     // destructor
@@ -11,7 +12,6 @@ class Expression {
 
     // prevents instantiation
     Expression (void);
-
 };
 
 #endif //EXPRESSION_CALCULATOR_EXPRESSION_H

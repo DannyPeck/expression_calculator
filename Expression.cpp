@@ -3,5 +3,4 @@
 // pure virtual destructors should still have implementations
 Expression::~Expression ()
 {
-
 }
