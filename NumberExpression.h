@@ -3,13 +3,15 @@
 
 #include "Expression.h"
 
-class NumberExpression : Expression
+class NumberExpression : public Expression
 {
   public:
 
     NumberExpression (int value);
 
-    int getValue (void);
+    ~NumberExpression (void);
+
+    int evaluate (void);
 
   private:
 

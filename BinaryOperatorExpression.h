@@ -7,19 +7,25 @@ class BinaryOperatorExpression : public Expression
 {
   public:
 
-    BinaryOperatorExpression (Expression * left_operand, Expression * right_operand, BinaryOperator * op);
+    BinaryOperatorExpression (int precedence);
 
-    ~BinaryOperatorExpression (void);
+    virtual ~BinaryOperatorExpression (void);
 
-    int evaluate (void);
+    virtual int evaluate (void) = 0;
 
-  private:
+    virtual void setLeftOperand (Expression * left_operand) = 0;
+
+    virtual void setRightOperand (Expression * right_operand) = 0;
+
+    virtual int getPrecedence (void) = 0;
+
+  protected:
 
     Expression * left_operand_;
 
     Expression * right_operand_;
 
-    BinaryOperator * operator_;
+    int precedence_;
 };
 
 #endif //EXPRESSION_CALCULATOR_BINARYOPERATOREXPRESSION_H

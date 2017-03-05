@@ -9,7 +9,7 @@ class Expression
     virtual ~Expression (void) = 0;
 
     // returns result of expression
-    int evaluate (void) = 0;
+    virtual int evaluate (void) = 0;
 
   protected:
 
