@@ -49,9 +49,6 @@ grammar itself.  This can be viewed as an implementation of the Interpreter patt
 | Term  | 6 |   |   |   |   |   |   6   |     |
 | TermTail |   | 9 | 9 | 9 | 7 | 8 |        |  9  |
 | Factor | 10 |   |   |   |   |   |        |     |
-|   |   |   |   |   |   |   |        |     |
-|   |   |   |   |   |   |   |        |     |
-|   |   |   |   |   |   |   |        |     |
 |   |   |   |   |   |   |   |   11   |     |
 
 
