@@ -1,4 +1,3 @@
-#include <iostream>
 #include "TermTail.h"
 #include "Factor.h"
 #include "BinaryOperator.h"

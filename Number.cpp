@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Number.h"
 
 Number::Number (int value)
