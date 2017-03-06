@@ -4,6 +4,7 @@
 #include "DivideOperator.h"
 #include "MultiplyOperator.h"
 #include "DivideOperator.h"
+#include "DivideByZeroException.h"
 
 TermTail::TermTail (void)
 : operator_ (nullptr), factor_ (nullptr), termTail_ (nullptr)
@@ -30,7 +31,7 @@ int TermTail::evaluate (void)
     catch (std::exception & e)
     {
       delete op;
-      throw e;
+      throw DivideByZeroException ();
     }
   }
   else

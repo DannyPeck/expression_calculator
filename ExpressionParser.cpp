@@ -3,6 +3,7 @@
 #include "ExpressionParser.h"
 #include "Context.h"
 #include "Start.h"
+#include "DivideByZeroException.h"
 
 ExpressionParser::ExpressionParser (void)
 : context_ (nullptr)
@@ -53,7 +54,7 @@ int ExpressionParser::evaluate (std::string expression)
   catch (std::exception & e)
   {
     delete startSymbol;
-    throw e;
+    throw DivideByZeroException ();
   }
 
   delete startSymbol;

@@ -1,4 +1,5 @@
 #include "DivideOperator.h"
+#include "DivideByZeroException.h"
 
 DivideOperator::DivideOperator (void)
 {
