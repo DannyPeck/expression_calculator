@@ -53,10 +53,12 @@ int ExpressionParser::evaluate (std::string expression)
   catch (std::exception & e)
   {
     delete startSymbol;
+    delete this->context_;
     throw e;
   }
 
   delete startSymbol;
+  delete this->context_;
 
   return result;
 }
