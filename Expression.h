@@ -1,20 +1,28 @@
 #ifndef EXPRESSION_CALCULATOR_EXPRESSION_H
 #define EXPRESSION_CALCULATOR_EXPRESSION_H
 
-class Expression
+#include "Variable.h"
+
+class Term;
+class ExpressionTail;
+
+class Expression : public Variable
 {
   public:
 
-    // destructor
-    virtual ~Expression (void) = 0;
-
-    // returns result of expression
-    virtual int evaluate (void) = 0;
-
-  protected:
-
-    // prevents instantiation
     Expression (void);
+
+    ~Expression (void);
+
+    int evaluate (void);
+
+    void derive (Context & context, std::string symbol);
+
+  private:
+
+    Term * term_;
+
+    ExpressionTail * expressionTail_;
 };
 
 #endif //EXPRESSION_CALCULATOR_EXPRESSION_H
