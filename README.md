@@ -15,10 +15,11 @@ between each token. e.g. ( 1 + 3 ) * ( 4 - 2 )
 
 ## Algorithm
 I have built essentially a Pushdown Automaton (a finite state machine with a stack)
-that parses incoming symbols and performs a top down derivation of the language using a builds
-a Composite Parse Tree made of Symbols which I can then evaluate to calculate the answer.
-This is possible because the grammar that I have used integrates operator precedence into the
-grammar itself.  This can be viewed as an implementation of the Interpreter pattern and the Composite Pattern.
+that parses incoming symbols and performs a top down derivation of the language using a LL(1)
+(Left Lookahead 1, only needs to look at one symbol at a time) grammar to build a Composite Parse Tree
+made of Symbols which I can then evaluate to calculate the answer. This is possible because the grammar
+that I have used integrates operator precedence into the grammar itself.  This can be viewed as
+an implementation of the Interpreter pattern and the Composite Pattern.
 
 ### Grammar
 #### Notes
