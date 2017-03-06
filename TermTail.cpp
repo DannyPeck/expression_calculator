@@ -2,6 +2,7 @@
 #include "TermTail.h"
 #include "Factor.h"
 #include "BinaryOperator.h"
+#include "DivideOperator.h"
 #include "MultiplyOperator.h"
 #include "DivideOperator.h"
 
@@ -19,7 +20,6 @@ TermTail::~TermTail (void)
 
 int TermTail::evaluate (void)
 {
-  std::cout << "TermTail" << std::endl;
   int result = 0;
   BinaryOperator * op = this->termTail_->getOperator ();
   if (op != nullptr)
@@ -37,11 +37,9 @@ int TermTail::evaluate (void)
 void TermTail::derive (Context & context, std::string symbol)
 {
   std::stack<Symbol *> & symbols = context.getSymbols ();
-  std::cout << "TermTail, " << symbol << std::endl;
   if (symbol == ")")
   {
     symbols.pop ();
-    context.nextSymbol ();
   }
   else if (symbol == "+")
   {
@@ -54,22 +52,22 @@ void TermTail::derive (Context & context, std::string symbol)
   else if (symbol == "*")
   {
     symbols.pop ();
-    this->operator_ = new MultiplyOperator ();
     this->factor_ = new Factor ();
     this->termTail_ = new TermTail ();
+    this->operator_ = new MultiplyOperator ();
     symbols.push (this->termTail_);
     symbols.push (this->factor_);
-    context.nextSymbol ();
+    symbols.push (this->operator_);
   }
   else if (symbol == "/")
   {
     symbols.pop ();
-    this->operator_ = new DivideOperator ();
     this->factor_ = new Factor ();
     this->termTail_ = new TermTail ();
+    this->operator_ = new DivideOperator ();
     symbols.push (this->termTail_);
     symbols.push (this->factor_);
-    context.nextSymbol ();
+    symbols.push (this->operator_);
   }
   else if (symbol == "eof")
   {

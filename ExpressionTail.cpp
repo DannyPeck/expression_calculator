@@ -20,7 +20,6 @@ ExpressionTail::~ExpressionTail (void)
 
 int ExpressionTail::evaluate (void)
 {
-  std::cout << "ETail" << std::endl;
   int result = 0;
   BinaryOperator * op = this->expressionTail_->getOperator ();
   if (op != nullptr)
@@ -38,33 +37,29 @@ int ExpressionTail::evaluate (void)
 void ExpressionTail::derive (Context & context, std::string symbol)
 {
   std::stack<Symbol *> & symbols = context.getSymbols ();
-  std::cout << "ETail, " << symbol << std::endl;
   if (symbol == ")")
   {
     symbols.pop ();
-    context.nextSymbol ();
   }
   else if (symbol == "+")
   {
-    std::cout << "ETail -> T ETail; +" << std::endl;
-    std::cin.get ();
     symbols.pop ();
-    this->operator_ = new AddOperator ();
     this->term_ = new Term ();
     this->expressionTail_ = new ExpressionTail ();
+    this->operator_ = new AddOperator ();
     symbols.push (this->expressionTail_);
     symbols.push (this->term_);
-    context.nextSymbol ();
+    symbols.push (this->operator_);
   }
   else if (symbol == "-")
   {
     symbols.pop ();
-    this->operator_ = new SubtractOperator ();
     this->term_ = new Term ();
     this->expressionTail_ = new ExpressionTail ();
+    this->operator_ = new SubtractOperator ();
     symbols.push (this->expressionTail_);
     symbols.push (this->term_);
-    context.nextSymbol ();
+    symbols.push (this->operator_);
   }
   else if (symbol == "eof")
   {

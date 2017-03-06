@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "Factor.h"
 #include "Expression.h"
+#include "LeftParenthesis.h"
+#include "RightParenthesis.h"
 #include "Number.h"
 
 Factor::Factor (void)
@@ -17,7 +19,6 @@ Factor::~Factor (void)
 
 int Factor::evaluate (void)
 {
-  std::cout << "Factor" << std::endl;
   if (this->expression_ != nullptr)
   {
     return this->expression_->evaluate ();
@@ -31,21 +32,21 @@ int Factor::evaluate (void)
 void Factor::derive (Context & context, std::string symbol)
 {
   std::stack<Symbol *> & symbols = context.getSymbols ();
-  std::cout << "Factor, " << symbol << std::endl;
   if (symbol == "(")
   {
     symbols.pop ();
+    RightParenthesis * rightParenthesis = new RightParenthesis ();
     this->expression_ = new Expression ();
+    LeftParenthesis * leftParenthesis = new LeftParenthesis ();
+    symbols.push (rightParenthesis);
     symbols.push (this->expression_);
-    context.nextSymbol ();
+    symbols.push (leftParenthesis);
   }
   else if (context.is_numeric (symbol))
   {
-    std::cout << "F -> Number; Number" << std::endl;
-    std::cin.get ();
     symbols.pop ();
     this->number_ = new Number (atoi (symbol.c_str ()));
-    context.nextSymbol ();
+    symbols.push (this->number_);
   }
   else
   {

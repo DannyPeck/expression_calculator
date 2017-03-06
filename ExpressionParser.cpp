@@ -34,7 +34,6 @@ int ExpressionParser::evaluate (std::string expression)
   while (this->context_->getBeginIterator () != this->context_->getEndIterator ())
   {
     std::string symbol = *this->context_->getBeginIterator ();
-    std::cout << symbol << std::endl;
 
     if (symbol != "")
     {
@@ -44,8 +43,6 @@ int ExpressionParser::evaluate (std::string expression)
     {
       symbols.top ()->derive (*this->context_, "eof");
     }
-
-    std::cout << "stack size: " << symbols.size () << std::endl;
   }
 
   return startSymbol->evaluate ();

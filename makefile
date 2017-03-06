@@ -1,7 +1,7 @@
 OBJECT_FILES = Symbol.o Terminal.o Variable.o Start.o Number.o Expression.o \
                ExpressionTail.o Term.o TermTail.o Factor.o Context.o ExpressionParser.o \
                Operator.o BinaryOperator.o AddOperator.o SubtractOperator.o MultiplyOperator.o \
-               DivideOperator.o main.o
+               DivideOperator.o LeftParenthesis.o RightParenthesis.o main.o
 
 C_FLAGS = --std=c++11 -g -c
 
@@ -61,6 +61,12 @@ MultiplyOperator.o: BinaryOperator.o MultiplyOperator.h MultiplyOperator.cpp
 
 DivideOperator.o: BinaryOperator.o DivideOperator.h DivideOperator.cpp
 	g++ $(C_FLAGS) DivideOperator.cpp
+
+LeftParenthesis.o: Terminal.o LeftParenthesis.h LeftParenthesis.cpp
+	g++ $(C_FLAGS) LeftParenthesis.cpp
+
+RightParenthesis.o: Terminal.o RightParenthesis.h RightParenthesis.cpp
+	g++ $(C_FLAGS) RightParenthesis.cpp
 
 main.o: main.cpp
 	g++ $(C_FLAGS) main.cpp

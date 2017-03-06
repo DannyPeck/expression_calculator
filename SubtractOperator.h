@@ -12,6 +12,8 @@ class SubtractOperator : public BinaryOperator
     ~SubtractOperator (void);
 
     int evaluate (int first, int second);
+
+    void derive (Context & context, std::string symbol);
 };
 
 #endif //EXPRESSION_CALCULATOR_SUBTRACTOPERATOR_H

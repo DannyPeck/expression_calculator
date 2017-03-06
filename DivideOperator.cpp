@@ -19,3 +19,17 @@ int DivideOperator::evaluate (int first, int second)
     throw DivideByZeroException ();
   }
 }
+
+void DivideOperator::derive (Context & context, std::string symbol)
+{
+  std::stack<Symbol *> & symbols = context.getSymbols ();
+  if (symbol == "/")
+  {
+    symbols.pop ();
+    context.nextSymbol ();
+  }
+  else
+  {
+    throw InvalidDerivationException ();
+  }
+}

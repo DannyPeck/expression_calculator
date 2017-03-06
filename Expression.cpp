@@ -17,7 +17,6 @@ Expression::~Expression (void)
 
 int Expression::evaluate (void)
 {
-  std::cout << "Expression" << std::endl;
   int result = 0;
   BinaryOperator * op = this->expressionTail_->getOperator ();
   if (op != nullptr)
@@ -35,7 +34,6 @@ int Expression::evaluate (void)
 void Expression::derive (Context & context, std::string symbol)
 {
   std::stack<Symbol *> & symbols = context.getSymbols ();
-  std::cout << "E, " << symbol << std::endl;
   if (symbol == "(")
   {
     symbols.pop ();
@@ -46,8 +44,6 @@ void Expression::derive (Context & context, std::string symbol)
   }
   else if (context.is_numeric (symbol))
   {
-    std::cout << "E -> T ETail; Number" << std::endl;
-    std::cin.get ();
     symbols.pop ();
     this->term_ = new Term ();
     this->expressionTail_ = new ExpressionTail ();

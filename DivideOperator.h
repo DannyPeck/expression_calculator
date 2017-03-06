@@ -14,6 +14,8 @@ class DivideOperator : public BinaryOperator
 
     int evaluate (int first, int second);
 
+    void derive (Context & context, std::string symbol);
+
   private:
 
     class DivideByZeroException : public std::exception

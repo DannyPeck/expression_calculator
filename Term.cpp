@@ -17,7 +17,6 @@ Term::~Term (void)
 
 int Term::evaluate (void)
 {
-  std::cout << "Term" << std::endl;
   int result = 0;
   BinaryOperator * op = this->termTail_->getOperator ();
   if (op != nullptr)
@@ -35,7 +34,6 @@ int Term::evaluate (void)
 void Term::derive (Context & context, std::string symbol)
 {
   std::stack<Symbol *> & symbols = context.getSymbols ();
-  std::cout << "Term, " << symbol << std::endl;
   if (symbol == "(")
   {
     symbols.pop ();
@@ -46,8 +44,6 @@ void Term::derive (Context & context, std::string symbol)
   }
   else if (context.is_numeric (symbol))
   {
-    std::cout << "T -> F TTail; Number" << std::endl;
-    std::cin.get ();
     symbols.pop ();
     this->factor_ = new Factor ();
     this->termTail_ = new TermTail ();

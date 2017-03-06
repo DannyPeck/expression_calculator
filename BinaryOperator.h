@@ -11,9 +11,15 @@ class BinaryOperator : public Operator
 
     virtual int evaluate (int first, int second) = 0;
 
+    virtual void derive (Context & context, std::string symbol) = 0;
+
   protected:
 
     BinaryOperator (void);
+
+  private:
+
+    virtual int evaluate (void);
 };
 
 #endif //EXPRESSION_CALCULATOR_BINARYOPERATOR_H

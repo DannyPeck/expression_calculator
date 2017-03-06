@@ -1,7 +1,9 @@
 #ifndef EXPRESSION_CALCULATOR_OPERATOR_H
 #define EXPRESSION_CALCULATOR_OPERATOR_H
 
-class Operator
+#include "Terminal.h"
+
+class Operator : public Terminal
 {
   public:
 
