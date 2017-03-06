@@ -16,11 +16,11 @@ class DivideOperator : public BinaryOperator
 
   private:
 
-    class divide_by_zero_exception : public std::exception
+    class DivideByZeroException : public std::exception
     {
       public:
         // Default constructor
-        divide_by_zero_exception (void) : std::exception ()
+        DivideByZeroException (void) : std::exception ()
         {
         }
 

@@ -16,6 +16,6 @@ int DivideOperator::evaluate (int first, int second)
   }
   else
   {
-    throw divide_by_zero_exception ();
+    throw DivideByZeroException ();
   }
 }

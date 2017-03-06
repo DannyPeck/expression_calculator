@@ -20,11 +20,11 @@ class Symbol
 
     Symbol (void);
 
-    class invalid_production_exception : public std::exception
+    class InvalidDerivationException : public std::exception
     {
       public:
         // Default constructor
-        invalid_production_exception (void) : std::exception ()
+        InvalidDerivationException (void) : std::exception ()
         {
         }
 

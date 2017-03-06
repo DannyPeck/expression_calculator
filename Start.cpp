@@ -39,6 +39,6 @@ void Start::derive (Context & context, std::string symbol)
   }
   else
   {
-    throw invalid_production_exception ();
+    throw InvalidDerivationException ();
   }
 }
