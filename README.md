@@ -2,8 +2,9 @@
 Expression Calculator using a Parsing Table and Grammar Objects
 
 ## Input Constraints
-I have designed the calculator to only accept input where there is a space
+- I have designed the calculator to only accept input where there is a space
 between each token. e.g. ( 1 + 3 ) * ( 4 - 2 )
+- To quit the program enter the input QUIT
 
 ## Supported Operators / Symbols
 - Addition: +
@@ -55,6 +56,7 @@ an implementation of the Interpreter pattern and the Composite Pattern.
 
 ## Objects / Interfaces
 - ExpressionParser
+- Context (Object)
 - Symbol (Interface)
     - Terminal (Interface)
         - Number (Object)

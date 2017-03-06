@@ -8,6 +8,7 @@ int main (void)
   std::getline (std::cin, expr_string);
 
   ExpressionParser parser;
+  std::cout << "Enter an expression (enter QUIT to exit):" << std::endl;
   while (expr_string != "QUIT")
   {
     int result = 0;
