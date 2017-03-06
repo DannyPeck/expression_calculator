@@ -27,7 +27,6 @@ int ExpressionParser::evaluate (std::string expression)
     tokens->push_back (token);
   }
 
-  delete  this->context_;
   this->context_ = new Context (tokens);
   std::stack<Symbol *> & symbols = this->context_->getSymbols ();
   Start * startSymbol = new Start ();
