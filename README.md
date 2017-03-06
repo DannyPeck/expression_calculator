@@ -50,8 +50,7 @@ an implementation of the Interpreter pattern and the Composite Pattern.
 | ExpressionTail  |   | 5 | 3 | 4 |   |   |        |  5  |
 | Term  | 6 |   |   |   |   |   |   6   |     |
 | TermTail |   | 9 | 9 | 9 | 7 | 8 |        |  9  |
-| Factor | 10 |   |   |   |   |   |        |     |
-|   |   |   |   |   |   |   |   11   |     |
+| Factor | 10 |   |   |   |   |   |   11   |     |
 
 
 ## Objects / Interfaces
