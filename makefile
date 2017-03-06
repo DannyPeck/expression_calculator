@@ -76,4 +76,4 @@ valgrind:
 	valgrind --leak-check=full -v --track-origins=yes --log-file=valgrind.txt ./calculator
 
 clean:
-	rm *.o calculator
+	rm *.o calculator valgrind.txt

@@ -23,15 +23,7 @@ int TermTail::evaluate (void)
   BinaryOperator * op = this->termTail_->getOperator ();
   if (op != nullptr)
   {
-    try
-    {
-      result = op->evaluate (this->factor_->evaluate (), this->termTail_->evaluate ());
-    }
-    catch (std::exception & e)
-    {
-      delete op;
-      throw e;
-    }
+    result = op->evaluate (this->factor_->evaluate (), this->termTail_->evaluate ());
   }
   else
   {
