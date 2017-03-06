@@ -43,7 +43,7 @@ an implementation of the Interpreter pattern and the Composite Pattern.
 - 11: Factor -> Number
 
 #### Parse Table
-The Parse Table represents the derivation decisions and built into
+The Parse Table represents the derivation decisions and are built into
 each Variables derive method logic.
 
 |   | ( | ) | + | - | * | / | Number | eof |
