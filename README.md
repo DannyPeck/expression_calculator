@@ -25,6 +25,7 @@ an implementation of the Interpreter pattern and the Composite Pattern.
 ### Grammar
 #### Notes
 - epsilon represents the empty string
+- eof represents the end of the input
 - Number, (, ), +, -, *, and / are terminal symbols
 - Start, Expression, ExpressionTail, Term, TermTail, and Factor are Variables
 
