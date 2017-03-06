@@ -3,6 +3,8 @@
 
 #include "Variable.h"
 
+class LeftParenthesis;
+class RightParenthesis;
 class Expression;
 class Number;
 
@@ -20,7 +22,11 @@ class Factor : public Variable
 
   protected:
 
+    LeftParenthesis * leftParenthesis_;
+
     Expression * expression_;
+
+    RightParenthesis * rightParenthesis_;
 
     Number * number_;
 };

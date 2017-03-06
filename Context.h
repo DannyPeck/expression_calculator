@@ -11,7 +11,7 @@ class Context
 {
   public:
 
-    Context (std::vector<std::string> * expression);
+    Context (std::vector<std::string> * tokens);
 
     ~Context (void);
 

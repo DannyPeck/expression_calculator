@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "Number.h"
 
 Number::Number (int value)

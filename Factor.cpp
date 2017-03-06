@@ -6,12 +6,15 @@
 #include "Number.h"
 
 Factor::Factor (void)
-: expression_ (nullptr), number_ (nullptr)
+: leftParenthesis_ (nullptr), rightParenthesis_ (nullptr),
+  expression_ (nullptr), number_ (nullptr)
 {
 }
 
 Factor::~Factor (void)
 {
+  delete this->leftParenthesis_;
+  delete this->rightParenthesis_;
   delete this->expression_;
   delete this->number_;
 }
@@ -34,12 +37,12 @@ void Factor::derive (Context & context, std::string symbol)
   if (symbol == "(")
   {
     symbols.pop ();
-    RightParenthesis * rightParenthesis = new RightParenthesis ();
+    this->rightParenthesis_ = new RightParenthesis ();
     this->expression_ = new Expression ();
-    LeftParenthesis * leftParenthesis = new LeftParenthesis ();
-    symbols.push (rightParenthesis);
+    this->leftParenthesis_ = new LeftParenthesis ();
+    symbols.push (this->rightParenthesis_);
     symbols.push (this->expression_);
-    symbols.push (leftParenthesis);
+    symbols.push (this->leftParenthesis_);
   }
   else if (context.is_numeric (symbol))
   {

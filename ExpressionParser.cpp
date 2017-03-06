@@ -11,6 +11,7 @@ ExpressionParser::ExpressionParser (void)
 
 ExpressionParser::~ExpressionParser (void)
 {
+  delete this->context_;
 }
 
 int ExpressionParser::evaluate (std::string expression)
@@ -44,5 +45,18 @@ int ExpressionParser::evaluate (std::string expression)
     }
   }
 
-  return startSymbol->evaluate ();
+  int result = 0;
+  try
+  {
+    result = startSymbol->evaluate ();
+  }
+  catch (std::exception & e)
+  {
+    delete startSymbol;
+    throw e;
+  }
+
+  delete startSymbol;
+
+  return result;
 }

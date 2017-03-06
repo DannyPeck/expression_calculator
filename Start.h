@@ -3,6 +3,7 @@
 
 #include "Variable.h"
 
+class LeftParenthesis;
 class Expression;
 
 class Start : public Variable
@@ -18,6 +19,8 @@ class Start : public Variable
     void derive (Context & context, std::string symbol);
 
   private:
+
+    LeftParenthesis * leftParenthesis_;
 
     Expression * expression_;
 };

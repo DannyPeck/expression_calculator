@@ -71,5 +71,9 @@ RightParenthesis.o: Terminal.o RightParenthesis.h RightParenthesis.cpp
 main.o: main.cpp
 	g++ $(C_FLAGS) main.cpp
 
+valgrind:
+	make
+	valgrind --leak-check=full -v --track-origins=yes --log-file=valgrind.txt ./calculator
+
 clean:
 	rm *.o calculator

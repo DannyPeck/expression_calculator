@@ -3,12 +3,13 @@
 #include "LeftParenthesis.h"
 
 Start::Start (void)
-: expression_ (nullptr)
+: leftParenthesis_ (nullptr), expression_ (nullptr)
 {
 }
 
 Start::~Start (void)
 {
+  delete this->leftParenthesis_;
   delete this->expression_;
 }
 
@@ -24,8 +25,8 @@ void Start::derive (Context & context, std::string symbol)
   {
     symbols.pop ();
     this->expression_ = new Expression ();
-    LeftParenthesis * leftParenthesis = new LeftParenthesis ();
-    symbols.push (leftParenthesis);
+    this->leftParenthesis_ = new LeftParenthesis ();
+    symbols.push (this->leftParenthesis_);
     symbols.push (this->expression_);
   }
   else if (context.is_numeric (symbol))
