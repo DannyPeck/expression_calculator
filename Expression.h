@@ -16,7 +16,11 @@ class Expression : public Variable
 
     int evaluate (void);
 
-    void derive (Context & context);
+    void accept (SymbolVisitor & visitor);
+
+    void setTerm (Term * term);
+
+    void setExpressionTail (ExpressionTail * expressionTail);
 
   private:
 

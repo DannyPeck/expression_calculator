@@ -15,17 +15,12 @@ int Number::evaluate (void)
   return this->value_;
 }
 
-void Number::derive (Context & context)
+void Number::accept (SymbolVisitor & visitor)
 {
-  std::stack<Symbol *> & symbols = context.getSymbols ();
-  const std::string & token = context.getToken ();
-  if (this->value_ == atoi (token.c_str ()))
-  {
-    symbols.pop ();
-    context.nextToken ();
-  }
-  else
-  {
-    throw InvalidDerivationException ();
-  }
+  visitor.visitNumber (*this);
+}
+
+const int Number::getValue (void) const
+{
+  return this->value_;
 }

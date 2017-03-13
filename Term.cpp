@@ -30,28 +30,17 @@ int Term::evaluate (void)
   return result;
 }
 
-void Term::derive (Context & context)
+void Term::accept (SymbolVisitor & visitor)
 {
-  std::stack<Symbol *> & symbols = context.getSymbols ();
-  const std::string & token = context.getToken ();
-  if (token == "(")
-  {
-    symbols.pop ();
-    this->factor_ = new Factor ();
-    this->termTail_ = new TermTail ();
-    symbols.push (termTail_);
-    symbols.push (factor_);
-  }
-  else if (context.is_numeric (token))
-  {
-    symbols.pop ();
-    this->factor_ = new Factor ();
-    this->termTail_ = new TermTail ();
-    symbols.push (termTail_);
-    symbols.push (factor_);
-  }
-  else
-  {
-    throw InvalidDerivationException ();
-  }
+  visitor.visitTerm (*this);
+}
+
+void Term::setFactor (Factor * factor)
+{
+  this->factor_ = factor;
+}
+
+void Term::setTermTail (TermTail * termTail)
+{
+  this->termTail_ = termTail;
 }

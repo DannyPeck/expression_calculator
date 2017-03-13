@@ -16,7 +16,13 @@ class ExpressionTail : public Variable
 
     virtual int evaluate (void);
 
-    virtual void derive (Context & context);
+    virtual void accept (SymbolVisitor & visitor);
+
+    void setOperator (BinaryOperator * binaryOperator);
+
+    void setTerm (Term * term);
+
+    void setExpressionTail (ExpressionTail * expressionTail);
 
     BinaryOperator * getOperator (void);
 

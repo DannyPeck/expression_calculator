@@ -13,17 +13,7 @@ int SubtractOperator::evaluate (int first, int second)
   return first - second;
 }
 
-void SubtractOperator::derive (Context & context)
+void SubtractOperator::accept (SymbolVisitor & visitor)
 {
-  std::stack<Symbol *> & symbols = context.getSymbols ();
-  const std::string & token = context.getToken ();
-  if (token == "-")
-  {
-    symbols.pop ();
-    context.nextToken ();
-  }
-  else
-  {
-    throw InvalidDerivationException ();
-  }
+  visitor.visitSubtractOperator (*this);
 }

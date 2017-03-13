@@ -13,7 +13,9 @@ class Number : public Terminal
 
     int evaluate (void);
 
-    void derive (Context & context);
+    void accept (SymbolVisitor & visitor);
+
+    const int getValue (void) const;
 
   private:
 

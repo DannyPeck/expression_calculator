@@ -13,7 +13,7 @@ class RightParenthesis : public Terminal
 
     int evaluate (void);
 
-    void derive (Context & context);
+    void accept (SymbolVisitor & visitor);
 };
 
 #endif //EXPRESSION_CALCULATOR_RIGHTPARENTHESIS_H

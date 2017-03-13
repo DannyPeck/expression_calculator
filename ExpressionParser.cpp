@@ -1,6 +1,7 @@
 #include <sstream>
 #include "ExpressionParser.h"
 #include "ParseTree.h"
+#include "DerivationVisitor.h"
 #include "Context.h"
 #include "Start.h"
 #include "DivideByZeroException.h"
@@ -37,21 +38,23 @@ ParseTree * ExpressionParser::derive (std::vector<std::string> * tokens)
   Start * startSymbol = new Start ();
   symbols.push (startSymbol);
 
+  DerivationVisitor * derivationVisitor = new DerivationVisitor (context);
   while (context->hasNextToken ())
   {
+    Symbol * symbol = symbols.top ();
     try
     {
-      symbols.top ()->derive (*context);
+      symbol->accept (*derivationVisitor);
     }
     catch (InvalidDerivationException & e)
     {
-      delete context;
+      delete derivationVisitor;
       delete startSymbol;
       throw e;
     }
   }
 
-  delete context;
+  delete derivationVisitor;
 
   return new ParseTree (startSymbol);
 }

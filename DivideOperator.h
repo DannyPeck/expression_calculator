@@ -13,7 +13,7 @@ class DivideOperator : public BinaryOperator
 
     int evaluate (int first, int second);
 
-    void derive (Context & context);
+    void accept (SymbolVisitor & visitor);
 };
 
 #endif //EXPRESSION_CALCULATOR_DIVIDEOPERATOR_H

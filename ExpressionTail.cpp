@@ -33,38 +33,24 @@ int ExpressionTail::evaluate (void)
   return result;
 }
 
-void ExpressionTail::derive (Context & context)
+void ExpressionTail::accept (SymbolVisitor & visitor)
 {
-  std::stack<Symbol *> & symbols = context.getSymbols ();
-  const std::string & token = context.getToken ();
-  if (token == ")")
-  {
-    symbols.pop ();
-  }
-  else if (token == "+")
-  {
-    symbols.pop ();
-    this->term_ = new Term ();
-    this->expressionTail_ = new ExpressionTail ();
-    this->operator_ = new AddOperator ();
-    symbols.push (this->expressionTail_);
-    symbols.push (this->term_);
-    symbols.push (this->operator_);
-  }
-  else if (token == "-")
-  {
-    symbols.pop ();
-    this->term_ = new Term ();
-    this->expressionTail_ = new ExpressionTail ();
-    this->operator_ = new SubtractOperator ();
-    symbols.push (this->expressionTail_);
-    symbols.push (this->term_);
-    symbols.push (this->operator_);
-  }
-  else
-  {
-    throw InvalidDerivationException ();
-  }
+  visitor.visitExpressionTail (*this);
+}
+
+void ExpressionTail::setOperator (BinaryOperator * binaryOperator)
+{
+  this->operator_ = binaryOperator;
+}
+
+void ExpressionTail::setTerm (Term * term)
+{
+  this->term_ = term;
+}
+
+void ExpressionTail::setExpressionTail (ExpressionTail * expressionTail)
+{
+  this->expressionTail_ = expressionTail;
 }
 
 BinaryOperator * ExpressionTail::getOperator (void)

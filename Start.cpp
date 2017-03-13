@@ -18,26 +18,17 @@ int Start::evaluate (void)
   return this->expression_->evaluate ();
 }
 
-void Start::derive (Context & context)
+void Start::accept (SymbolVisitor & visitor)
 {
-  std::stack<Symbol *> & symbols = context.getSymbols ();
-  const std::string & token = context.getToken ();
-  if (token == "(")
-  {
-    symbols.pop ();
-    this->expression_ = new Expression ();
-    this->leftParenthesis_ = new LeftParenthesis ();
-    symbols.push (this->leftParenthesis_);
-    symbols.push (this->expression_);
-  }
-  else if (context.is_numeric (token))
-  {
-    symbols.pop ();
-    this->expression_ = new Expression ();
-    symbols.push (this->expression_);
-  }
-  else
-  {
-    throw InvalidDerivationException ();
-  }
+  visitor.visitStart (*this);
+}
+
+void Start::setLeftParenthesis (LeftParenthesis * leftParenthesis)
+{
+  this->leftParenthesis_ = leftParenthesis;
+}
+
+void Start::setExpression (Expression * expression)
+{
+  this->expression_ = expression;
 }

@@ -18,7 +18,15 @@ class Factor : public Variable
 
     virtual int evaluate (void);
 
-    virtual void derive (Context & context);
+    virtual void accept (SymbolVisitor & visitor);
+
+    void setLeftParenthesis (LeftParenthesis * leftParenthesis);
+
+    void setExpression (Expression * expression);
+
+    void setRightParenthesis (RightParenthesis * rightParenthesis);
+
+    void setNumber (Number * number);
 
   protected:
 

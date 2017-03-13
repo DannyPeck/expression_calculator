@@ -4,7 +4,7 @@
 #include <string>
 #include <stdexcept>
 #include <stack>
-#include "Context.h"
+#include "SymbolVisitor.h"
 #include "InvalidDerivationException.h"
 
 class Symbol
@@ -15,7 +15,7 @@ class Symbol
 
     virtual int evaluate (void) = 0;
 
-    virtual void derive (Context & context) = 0;
+    virtual void accept (SymbolVisitor & visitor) = 0;
 
   protected:
 

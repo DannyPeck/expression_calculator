@@ -1,6 +1,8 @@
 #include <iostream>
 #include "ExpressionParser.h"
 #include "ParseTree.h"
+#include "DivideByZeroException.h"
+#include "InvalidDerivationException.h"
 
 int main (void)
 {
@@ -19,7 +21,13 @@ int main (void)
       parseTree = parser->parse (expr_string);
       result = parseTree->evaluate ();
     }
-    catch (std::exception & e)
+    catch (InvalidDerivationException & e)
+    {
+      std::cout << e.what () << std::endl;
+      std::getline (std::cin, expr_string);
+      continue;
+    }
+    catch (DivideByZeroException & e)
     {
       std::cout << e.what () << std::endl;
       std::getline (std::cin, expr_string);
@@ -31,7 +39,8 @@ int main (void)
 
     std::getline (std::cin, expr_string);
 
-    delete parser;
     delete parseTree;
   }
+
+  delete parser;
 }

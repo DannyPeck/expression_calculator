@@ -31,28 +31,27 @@ int Factor::evaluate (void)
   }
 }
 
-void Factor::derive (Context & context)
+void Factor::accept (SymbolVisitor & visitor)
 {
-  std::stack<Symbol *> & symbols = context.getSymbols ();
-  const std::string & token = context.getToken ();
-  if (token == "(")
-  {
-    symbols.pop ();
-    this->rightParenthesis_ = new RightParenthesis ();
-    this->expression_ = new Expression ();
-    this->leftParenthesis_ = new LeftParenthesis ();
-    symbols.push (this->rightParenthesis_);
-    symbols.push (this->expression_);
-    symbols.push (this->leftParenthesis_);
-  }
-  else if (context.is_numeric (token))
-  {
-    symbols.pop ();
-    this->number_ = new Number (atoi (token.c_str ()));
-    symbols.push (this->number_);
-  }
-  else
-  {
-    throw InvalidDerivationException ();
-  }
+  visitor.visitFactor (*this);
+}
+
+void Factor::setLeftParenthesis (LeftParenthesis * leftParenthesis)
+{
+  this->leftParenthesis_ = leftParenthesis;
+}
+
+void Factor::setExpression (Expression * expression)
+{
+  this->expression_ = expression;
+}
+
+void Factor::setRightParenthesis (RightParenthesis * rightParenthesis)
+{
+  this->rightParenthesis_ = rightParenthesis;
+}
+
+void Factor::setNumber (Number * number)
+{
+  this->number_ = number;
 }

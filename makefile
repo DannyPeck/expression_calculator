@@ -1,7 +1,8 @@
 OBJECT_FILES = Symbol.o Terminal.o Variable.o Start.o Number.o Expression.o \
-               ExpressionTail.o Term.o TermTail.o Factor.o Context.o ExpressionParser.o \
-               ParseTree.o Operator.o BinaryOperator.o AddOperator.o SubtractOperator.o MultiplyOperator.o \
-               DivideOperator.o LeftParenthesis.o RightParenthesis.o main.o
+               ExpressionTail.o Term.o TermTail.o Factor.o Operator.o BinaryOperator.o \
+							 AddOperator.o SubtractOperator.o MultiplyOperator.o DivideOperator.o \
+							 LeftParenthesis.o RightParenthesis.o Context.o ExpressionParser.o ParseTree.o \
+							 SymbolVisitor.o DerivationVisitor.o main.o
 
 C_FLAGS = --std=c++11 -g -c
 
@@ -38,15 +39,6 @@ TermTail.o: Variable.o TermTail.h TermTail.cpp
 Factor.o: Variable.o Factor.h Factor.cpp
 	g++ $(C_FLAGS) Factor.cpp
 
-Context.o: Context.h Context.cpp
-	g++ $(C_FLAGS) Context.cpp
-
-ExpressionParser.o: ExpressionParser.h ExpressionParser.cpp
-	g++ $(C_FLAGS) ExpressionParser.cpp
-
-ParseTree.o: Symbol.o ParseTree.h ParseTree.cpp
-	g++ $(C_FLAGS) ParseTree.cpp
-
 Operator.o: Operator.h Operator.cpp
 	g++ $(C_FLAGS) Operator.cpp
 
@@ -70,6 +62,21 @@ LeftParenthesis.o: Terminal.o LeftParenthesis.h LeftParenthesis.cpp
 
 RightParenthesis.o: Terminal.o RightParenthesis.h RightParenthesis.cpp
 	g++ $(C_FLAGS) RightParenthesis.cpp
+
+Context.o: Context.h Context.cpp
+	g++ $(C_FLAGS) Context.cpp
+
+ExpressionParser.o: ExpressionParser.h ExpressionParser.cpp
+	g++ $(C_FLAGS) ExpressionParser.cpp
+
+ParseTree.o: Symbol.o ParseTree.h ParseTree.cpp
+	g++ $(C_FLAGS) ParseTree.cpp
+
+SymbolVisitor.o: SymbolVisitor.h SymbolVisitor.cpp
+	g++ $(C_FLAGS) SymbolVisitor.cpp
+
+DerivationVisitor.o: SymbolVisitor.o DerivationVisitor.h DerivationVisitor.cpp
+	g++ $(C_FLAGS) DerivationVisitor.cpp
 
 main.o: main.cpp
 	g++ $(C_FLAGS) main.cpp

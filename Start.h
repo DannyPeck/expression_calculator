@@ -16,7 +16,11 @@ class Start : public Variable
 
     int evaluate (void);
 
-    void derive (Context & context);
+    void accept (SymbolVisitor & visitor);
+
+    void setLeftParenthesis (LeftParenthesis * leftParenthesis);
+
+    void setExpression (Expression * expression);
 
   private:
 

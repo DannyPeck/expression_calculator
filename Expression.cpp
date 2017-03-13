@@ -30,28 +30,17 @@ int Expression::evaluate (void)
   return result;
 }
 
-void Expression::derive (Context & context)
+void Expression::accept (SymbolVisitor & visitor)
 {
-  std::stack<Symbol *> & symbols = context.getSymbols ();
-  const std::string & token = context.getToken ();
-  if (token == "(")
-  {
-    symbols.pop ();
-    this->term_ = new Term ();
-    this->expressionTail_ = new ExpressionTail ();
-    symbols.push (this->expressionTail_);
-    symbols.push (this->term_);
-  }
-  else if (context.is_numeric (token))
-  {
-    symbols.pop ();
-    this->term_ = new Term ();
-    this->expressionTail_ = new ExpressionTail ();
-    symbols.push (this->expressionTail_);
-    symbols.push (this->term_);
-  }
-  else
-  {
-    throw InvalidDerivationException ();
-  }
+  visitor.visitExpression (*this);
+}
+
+void Expression::setTerm (Term * term)
+{
+  this->term_ = term;
+}
+
+void Expression::setExpressionTail (ExpressionTail * expressionTail)
+{
+  this->expressionTail_ = expressionTail;
 }

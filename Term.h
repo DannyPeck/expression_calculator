@@ -16,7 +16,11 @@ class Term : public Variable
 
     int evaluate (void);
 
-    void derive (Context & context);
+    void accept (SymbolVisitor & visitor);
+
+    void setFactor (Factor * factor);
+
+    void setTermTail (TermTail * termTail);
 
   private:
 

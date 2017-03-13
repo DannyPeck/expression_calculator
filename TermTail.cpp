@@ -42,46 +42,24 @@ int TermTail::evaluate (void)
   return result;
 }
 
-void TermTail::derive (Context & context)
+void TermTail::accept (SymbolVisitor & visitor)
 {
-  std::stack<Symbol *> & symbols = context.getSymbols ();
-  const std::string & token = context.getToken ();
-  if (token == ")")
-  {
-    symbols.pop ();
-  }
-  else if (token == "+")
-  {
-    symbols.pop ();
-  }
-  else if (token == "-")
-  {
-    symbols.pop ();
-  }
-  else if (token == "*")
-  {
-    symbols.pop ();
-    this->factor_ = new Factor ();
-    this->termTail_ = new TermTail ();
-    this->operator_ = new MultiplyOperator ();
-    symbols.push (this->termTail_);
-    symbols.push (this->factor_);
-    symbols.push (this->operator_);
-  }
-  else if (token == "/")
-  {
-    symbols.pop ();
-    this->factor_ = new Factor ();
-    this->termTail_ = new TermTail ();
-    this->operator_ = new DivideOperator ();
-    symbols.push (this->termTail_);
-    symbols.push (this->factor_);
-    symbols.push (this->operator_);
-  }
-  else
-  {
-    throw InvalidDerivationException ();
-  }
+  visitor.visitTermTail (*this);
+}
+
+void TermTail::setOperator (BinaryOperator * binaryOperator)
+{
+  this->operator_ = binaryOperator;
+}
+
+void TermTail::setFactor (Factor * factor)
+{
+  this->factor_ = factor;
+}
+
+void TermTail::setTermTail (TermTail * termTail)
+{
+  this->termTail_ = termTail;
 }
 
 BinaryOperator * TermTail::getOperator (void)

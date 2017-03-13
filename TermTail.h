@@ -16,7 +16,13 @@ class TermTail : public Variable
 
     int evaluate (void);
 
-    void derive (Context & context);
+    void accept (SymbolVisitor & visitor);
+
+    void setOperator (BinaryOperator * binaryOperator);
+
+    void setFactor (Factor * factor);
+
+    void setTermTail (TermTail * termTail);
 
     BinaryOperator * getOperator (void);
 
