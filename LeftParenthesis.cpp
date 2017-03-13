@@ -13,13 +13,14 @@ int LeftParenthesis::evaluate (void)
   return 0;
 }
 
-void LeftParenthesis::derive (Context & context, std::string symbol)
+void LeftParenthesis::derive (Context & context)
 {
   std::stack<Symbol *> & symbols = context.getSymbols ();
-  if (symbol == "(")
+  const std::string & token = context.getToken ();
+  if (token == "(")
   {
     symbols.pop ();
-    context.nextSymbol ();
+    context.nextToken ();
   }
   else
   {

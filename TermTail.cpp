@@ -42,22 +42,23 @@ int TermTail::evaluate (void)
   return result;
 }
 
-void TermTail::derive (Context & context, std::string symbol)
+void TermTail::derive (Context & context)
 {
   std::stack<Symbol *> & symbols = context.getSymbols ();
-  if (symbol == ")")
+  const std::string & token = context.getToken ();
+  if (token == ")")
   {
     symbols.pop ();
   }
-  else if (symbol == "+")
+  else if (token == "+")
   {
     symbols.pop ();
   }
-  else if (symbol == "-")
+  else if (token == "-")
   {
     symbols.pop ();
   }
-  else if (symbol == "*")
+  else if (token == "*")
   {
     symbols.pop ();
     this->factor_ = new Factor ();
@@ -67,7 +68,7 @@ void TermTail::derive (Context & context, std::string symbol)
     symbols.push (this->factor_);
     symbols.push (this->operator_);
   }
-  else if (symbol == "/")
+  else if (token == "/")
   {
     symbols.pop ();
     this->factor_ = new Factor ();
@@ -76,10 +77,6 @@ void TermTail::derive (Context & context, std::string symbol)
     symbols.push (this->termTail_);
     symbols.push (this->factor_);
     symbols.push (this->operator_);
-  }
-  else if (symbol == "eof")
-  {
-    symbols.pop ();
   }
   else
   {

@@ -31,10 +31,11 @@ int Factor::evaluate (void)
   }
 }
 
-void Factor::derive (Context & context, std::string symbol)
+void Factor::derive (Context & context)
 {
   std::stack<Symbol *> & symbols = context.getSymbols ();
-  if (symbol == "(")
+  const std::string & token = context.getToken ();
+  if (token == "(")
   {
     symbols.pop ();
     this->rightParenthesis_ = new RightParenthesis ();
@@ -44,10 +45,10 @@ void Factor::derive (Context & context, std::string symbol)
     symbols.push (this->expression_);
     symbols.push (this->leftParenthesis_);
   }
-  else if (context.is_numeric (symbol))
+  else if (context.is_numeric (token))
   {
     symbols.pop ();
-    this->number_ = new Number (atoi (symbol.c_str ()));
+    this->number_ = new Number (atoi (token.c_str ()));
     symbols.push (this->number_);
   }
   else

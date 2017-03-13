@@ -12,11 +12,11 @@ class TermTail : public Variable
 
     TermTail (void);
 
-    virtual ~TermTail (void);
+    ~TermTail (void);
 
-    virtual int evaluate (void);
+    int evaluate (void);
 
-    virtual void derive (Context & context, std::string symbol);
+    void derive (Context & context);
 
     BinaryOperator * getOperator (void);
 

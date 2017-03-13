@@ -9,10 +9,6 @@ class Variable : public Symbol
 
     virtual ~Variable (void) = 0;
 
-    int evaluate (void) = 0;
-
-    void derive (Context & context, std::string symbol) = 0;
-
   protected:
 
     Variable (void);

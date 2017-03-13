@@ -13,13 +13,14 @@ int SubtractOperator::evaluate (int first, int second)
   return first - second;
 }
 
-void SubtractOperator::derive (Context & context, std::string symbol)
+void SubtractOperator::derive (Context & context)
 {
   std::stack<Symbol *> & symbols = context.getSymbols ();
-  if (symbol == "-")
+  const std::string & token = context.getToken ();
+  if (token == "-")
   {
     symbols.pop ();
-    context.nextSymbol ();
+    context.nextToken ();
   }
   else
   {

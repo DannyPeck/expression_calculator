@@ -16,7 +16,7 @@ class Expression : public Variable
 
     int evaluate (void);
 
-    void derive (Context & context, std::string symbol);
+    void derive (Context & context);
 
   private:
 

@@ -13,11 +13,9 @@ class ExpressionParser
 
     ~ExpressionParser (void);
 
-    int evaluate (std::string expression);
+    int evaluate (const std::string & expression);
 
-  private:
-
-    Context * context_;
+    void derive (Context & context);
 };
 
 #endif //EXPRESSION_CALCULATOR_EXPRESSIONPARSER_H

@@ -6,16 +6,14 @@
 #include "DivideByZeroException.h"
 
 ExpressionParser::ExpressionParser (void)
-: context_ (nullptr)
 {
 }
 
 ExpressionParser::~ExpressionParser (void)
 {
-  delete this->context_;
 }
 
-int ExpressionParser::evaluate (std::string expression)
+int ExpressionParser::evaluate (const std::string & expression)
 {
   std::vector<std::string> * tokens = new std::vector<std::string> ();
   std::stringstream input;
@@ -28,23 +26,13 @@ int ExpressionParser::evaluate (std::string expression)
     tokens->push_back (token);
   }
 
-  this->context_ = new Context (tokens);
-  std::stack<Symbol *> & symbols = this->context_->getSymbols ();
+  Context * context = new Context (tokens);
+
+  std::stack<Symbol *> & symbols = context->getSymbols ();
   Start * startSymbol = new Start ();
   symbols.push (startSymbol);
-  while (this->context_->getBeginIterator () != this->context_->getEndIterator ())
-  {
-    std::string symbol = *this->context_->getBeginIterator ();
 
-    if (symbol != "")
-    {
-      symbols.top ()->derive (*this->context_, symbol);
-    }
-    else
-    {
-      symbols.top ()->derive (*this->context_, "eof");
-    }
-  }
+  this->derive (*context);
 
   int result = 0;
   try
@@ -60,4 +48,13 @@ int ExpressionParser::evaluate (std::string expression)
   delete startSymbol;
 
   return result;
+}
+
+void ExpressionParser::derive (Context & context)
+{
+  std::stack<Symbol *> & symbols = context.getSymbols ();
+  while (context.hasNextToken ())
+  {
+    symbols.top ()->derive (context);
+  }
 }

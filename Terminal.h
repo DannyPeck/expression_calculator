@@ -9,10 +9,6 @@ class Terminal : public Symbol
 
     virtual ~Terminal (void) = 0;
 
-    virtual int evaluate (void) = 0;
-
-    virtual void derive (Context & context, std::string symbol) = 0;
-
   protected:
 
     Terminal (void);

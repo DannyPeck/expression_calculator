@@ -15,17 +15,15 @@ class Context
 
     ~Context (void);
 
-    std::stack<Symbol *> & getSymbols (void);
+    std::stack<Symbol *> & getSymbols (void) const;
 
-    std::vector<std::string>::iterator & getBeginIterator (void);
+    const std::string & getToken (void) const;
 
-    std::vector<std::string>::iterator & getEndIterator (void);
+    void nextToken (void);
 
-    std::vector<std::string> & getTokens (void);
+    bool hasNextToken (void) const;
 
-    void nextSymbol (void);
-
-    bool is_numeric (std::string token);
+    bool is_numeric (const std::string & token) const;
 
   private:
 
@@ -33,9 +31,9 @@ class Context
 
     std::stack<Symbol *> * symbols_;
 
-    std::vector<std::string>::iterator begin_;
+    std::vector<std::string>::const_iterator begin_;
 
-    std::vector<std::string>::iterator end_;
+    std::vector<std::string>::const_iterator end_;
 
 };
 

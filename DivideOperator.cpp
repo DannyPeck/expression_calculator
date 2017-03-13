@@ -21,13 +21,14 @@ int DivideOperator::evaluate (int first, int second)
   }
 }
 
-void DivideOperator::derive (Context & context, std::string symbol)
+void DivideOperator::derive (Context & context)
 {
   std::stack<Symbol *> & symbols = context.getSymbols ();
-  if (symbol == "/")
+  const std::string & token = context.getToken ();
+  if (token == "/")
   {
     symbols.pop ();
-    context.nextSymbol ();
+    context.nextToken ();
   }
   else
   {

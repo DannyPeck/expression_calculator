@@ -30,10 +30,11 @@ int Term::evaluate (void)
   return result;
 }
 
-void Term::derive (Context & context, std::string symbol)
+void Term::derive (Context & context)
 {
   std::stack<Symbol *> & symbols = context.getSymbols ();
-  if (symbol == "(")
+  const std::string & token = context.getToken ();
+  if (token == "(")
   {
     symbols.pop ();
     this->factor_ = new Factor ();
@@ -41,7 +42,7 @@ void Term::derive (Context & context, std::string symbol)
     symbols.push (termTail_);
     symbols.push (factor_);
   }
-  else if (context.is_numeric (symbol))
+  else if (context.is_numeric (token))
   {
     symbols.pop ();
     this->factor_ = new Factor ();

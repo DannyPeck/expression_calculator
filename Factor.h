@@ -18,7 +18,7 @@ class Factor : public Variable
 
     virtual int evaluate (void);
 
-    virtual void derive (Context & context, std::string symbol);
+    virtual void derive (Context & context);
 
   protected:
 

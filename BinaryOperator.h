@@ -11,8 +11,6 @@ class BinaryOperator : public Operator
 
     virtual int evaluate (int first, int second) = 0;
 
-    virtual void derive (Context & context, std::string symbol) = 0;
-
   protected:
 
     BinaryOperator (void);

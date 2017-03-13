@@ -18,10 +18,11 @@ int Start::evaluate (void)
   return this->expression_->evaluate ();
 }
 
-void Start::derive (Context & context, std::string symbol)
+void Start::derive (Context & context)
 {
   std::stack<Symbol *> & symbols = context.getSymbols ();
-  if (symbol == "(")
+  const std::string & token = context.getToken ();
+  if (token == "(")
   {
     symbols.pop ();
     this->expression_ = new Expression ();
@@ -29,7 +30,7 @@ void Start::derive (Context & context, std::string symbol)
     symbols.push (this->leftParenthesis_);
     symbols.push (this->expression_);
   }
-  else if (context.is_numeric (symbol))
+  else if (context.is_numeric (token))
   {
     symbols.pop ();
     this->expression_ = new Expression ();

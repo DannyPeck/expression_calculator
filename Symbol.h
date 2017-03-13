@@ -14,7 +14,7 @@ class Symbol
 
     virtual int evaluate (void) = 0;
 
-    virtual void derive (Context & context, std::string symbol) = 0;
+    virtual void derive (Context & context) = 0;
 
   protected:
 

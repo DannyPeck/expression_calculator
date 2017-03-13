@@ -15,39 +15,35 @@ Context::~Context (void)
   delete this->tokens_;
 }
 
-std::stack<Symbol *> & Context::getSymbols (void)
+std::stack<Symbol *> & Context::getSymbols (void) const
 {
   return *this->symbols_;
 }
 
-std::vector<std::string>::iterator & Context::getBeginIterator (void)
+const std::string & Context::getToken (void) const
 {
-  return this->begin_;
+  return *this->begin_;
 }
 
-std::vector<std::string>::iterator & Context::getEndIterator (void)
+void Context::nextToken (void)
 {
-  return this->end_;
+  ++ this->begin_;
 }
 
-std::vector<std::string> & Context::getTokens (void)
+bool Context::hasNextToken (void) const
 {
-  return *this->tokens_;
-}
-
-void Context::nextSymbol (void)
-{
-  this->begin_ ++;
+  return this->begin_ != this->end_;
 }
 
 // checks for if the token has alpha and special characters
-bool Context::is_numeric (std::string token)
+bool Context::is_numeric (const std::string & token) const
 {
   bool result = true;
   // scans the input token checking to see if any of the characters are not numeric
-  for (int i = 0; i < token.length (); i++)
+  for (std::string::const_iterator iter = token.begin (); iter != token.end (); ++ iter)
   {
-    if (std::isalpha (token[i]) || std::ispunct (token[i]))
+    char character = *iter;
+    if (std::isalpha (character) || std::ispunct (character))
     {
       result = false;
     }

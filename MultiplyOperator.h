@@ -13,7 +13,7 @@ class MultiplyOperator : public BinaryOperator
 
     int evaluate (int first, int second);
 
-    void derive (Context & context, std::string symbol);
+    void derive (Context & context);
 };
 
 #endif //EXPRESSION_CALCULATOR_MULTIPLYOPERATOR_H

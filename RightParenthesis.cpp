@@ -13,13 +13,14 @@ int RightParenthesis::evaluate (void)
   return 0;
 }
 
-void RightParenthesis::derive (Context & context, std::string symbol)
+void RightParenthesis::derive (Context & context)
 {
   std::stack<Symbol *> & symbols = context.getSymbols ();
-  if (symbol == ")")
+  const std::string & token = context.getToken ();
+  if (token == ")")
   {
     symbols.pop ();
-    context.nextSymbol ();
+    context.nextToken ();
   }
   else
   {

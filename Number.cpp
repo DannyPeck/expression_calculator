@@ -15,13 +15,14 @@ int Number::evaluate (void)
   return this->value_;
 }
 
-void Number::derive (Context & context, std::string symbol)
+void Number::derive (Context & context)
 {
   std::stack<Symbol *> & symbols = context.getSymbols ();
-  if (this->value_ == atoi (symbol.c_str ()))
+  const std::string & token = context.getToken ();
+  if (this->value_ == atoi (token.c_str ()))
   {
     symbols.pop ();
-    context.nextSymbol ();
+    context.nextToken ();
   }
   else
   {

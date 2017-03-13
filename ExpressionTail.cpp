@@ -33,14 +33,15 @@ int ExpressionTail::evaluate (void)
   return result;
 }
 
-void ExpressionTail::derive (Context & context, std::string symbol)
+void ExpressionTail::derive (Context & context)
 {
   std::stack<Symbol *> & symbols = context.getSymbols ();
-  if (symbol == ")")
+  const std::string & token = context.getToken ();
+  if (token == ")")
   {
     symbols.pop ();
   }
-  else if (symbol == "+")
+  else if (token == "+")
   {
     symbols.pop ();
     this->term_ = new Term ();
@@ -50,7 +51,7 @@ void ExpressionTail::derive (Context & context, std::string symbol)
     symbols.push (this->term_);
     symbols.push (this->operator_);
   }
-  else if (symbol == "-")
+  else if (token == "-")
   {
     symbols.pop ();
     this->term_ = new Term ();
@@ -59,10 +60,6 @@ void ExpressionTail::derive (Context & context, std::string symbol)
     symbols.push (this->expressionTail_);
     symbols.push (this->term_);
     symbols.push (this->operator_);
-  }
-  else if (symbol == "eof")
-  {
-    symbols.pop ();
   }
   else
   {

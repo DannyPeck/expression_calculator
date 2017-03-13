@@ -13,7 +13,7 @@ class RightParenthesis : public Terminal
 
     int evaluate (void);
 
-    void derive (Context & context, std::string symbol);
+    void derive (Context & context);
 };
 
 #endif //EXPRESSION_CALCULATOR_RIGHTPARENTHESIS_H
