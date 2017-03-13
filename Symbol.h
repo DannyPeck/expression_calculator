@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <stack>
 #include "Context.h"
+#include "InvalidDerivationException.h"
 
 class Symbol
 {
@@ -19,20 +20,6 @@ class Symbol
   protected:
 
     Symbol (void);
-
-    class InvalidDerivationException : public std::exception
-    {
-      public:
-        // Default constructor
-        InvalidDerivationException (void) : std::exception ()
-        {
-        }
-
-        virtual const char * what () const throw ()
-        {
-          return "Invalid expression";
-        }
-    };
 };
 
 #endif //EXPRESSION_CALCULATOR_SYMBOL_H

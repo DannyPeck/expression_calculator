@@ -4,6 +4,7 @@
 #include "Context.h"
 #include "Start.h"
 #include "DivideByZeroException.h"
+#include "InvalidDerivationException.h"
 
 ExpressionParser::ExpressionParser (void)
 {

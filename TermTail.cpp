@@ -28,10 +28,10 @@ int TermTail::evaluate (void)
     {
       result = op->evaluate (this->factor_->evaluate (), this->termTail_->evaluate ());
     }
-    catch (std::exception & e)
+    catch (DivideByZeroException & e)
     {
       delete op;
-      throw DivideByZeroException ();
+      throw e;
     }
   }
   else
