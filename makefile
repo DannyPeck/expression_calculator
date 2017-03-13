@@ -1,6 +1,6 @@
 OBJECT_FILES = Symbol.o Terminal.o Variable.o Start.o Number.o Expression.o \
                ExpressionTail.o Term.o TermTail.o Factor.o Context.o ExpressionParser.o \
-               Operator.o BinaryOperator.o AddOperator.o SubtractOperator.o MultiplyOperator.o \
+               ParseTree.o Operator.o BinaryOperator.o AddOperator.o SubtractOperator.o MultiplyOperator.o \
                DivideOperator.o LeftParenthesis.o RightParenthesis.o main.o
 
 C_FLAGS = --std=c++11 -g -c
@@ -43,6 +43,9 @@ Context.o: Context.h Context.cpp
 
 ExpressionParser.o: ExpressionParser.h ExpressionParser.cpp
 	g++ $(C_FLAGS) ExpressionParser.cpp
+
+ParseTree.o: Symbol.o ParseTree.h ParseTree.cpp
+	g++ $(C_FLAGS) ParseTree.cpp
 
 Operator.o: Operator.h Operator.cpp
 	g++ $(C_FLAGS) Operator.cpp

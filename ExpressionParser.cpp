@@ -1,6 +1,6 @@
 #include <sstream>
-#include <vector>
 #include "ExpressionParser.h"
+#include "ParseTree.h"
 #include "Context.h"
 #include "Start.h"
 #include "DivideByZeroException.h"
@@ -14,7 +14,7 @@ ExpressionParser::~ExpressionParser (void)
 {
 }
 
-int ExpressionParser::evaluate (const std::string & expression)
+ParseTree * ExpressionParser::parse (const std::string & expression)
 {
   std::vector<std::string> * tokens = new std::vector<std::string> ();
   std::stringstream input;
@@ -27,35 +27,31 @@ int ExpressionParser::evaluate (const std::string & expression)
     tokens->push_back (token);
   }
 
-  Context * context = new Context (tokens);
+  return this->derive (tokens);
+}
 
+ParseTree * ExpressionParser::derive (std::vector<std::string> * tokens)
+{
+  Context * context = new Context (tokens);
   std::stack<Symbol *> & symbols = context->getSymbols ();
   Start * startSymbol = new Start ();
   symbols.push (startSymbol);
 
-  this->derive (*context);
-
-  int result = 0;
-  try
+  while (context->hasNextToken ())
   {
-    result = startSymbol->evaluate ();
-  }
-  catch (std::exception & e)
-  {
-    delete startSymbol;
-    throw DivideByZeroException ();
+    try
+    {
+      symbols.top ()->derive (*context);
+    }
+    catch (InvalidDerivationException & e)
+    {
+      delete context;
+      delete startSymbol;
+      throw e;
+    }
   }
 
-  delete startSymbol;
+  delete context;
 
-  return result;
-}
-
-void ExpressionParser::derive (Context & context)
-{
-  std::stack<Symbol *> & symbols = context.getSymbols ();
-  while (context.hasNextToken ())
-  {
-    symbols.top ()->derive (context);
-  }
+  return new ParseTree (startSymbol);
 }

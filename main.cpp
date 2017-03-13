@@ -1,5 +1,6 @@
 #include <iostream>
 #include "ExpressionParser.h"
+#include "ParseTree.h"
 
 int main (void)
 {
@@ -8,20 +9,21 @@ int main (void)
   std::cout << "Enter an expression (enter QUIT to exit):" << std::endl;
   std::getline (std::cin, expr_string);
 
-  ExpressionParser * parser;
+  ExpressionParser * parser = new ExpressionParser ();
+  ParseTree * parseTree;
   while (expr_string != "QUIT")
   {
-    parser = new ExpressionParser ();
     int result = 0;
     try
     {
-      result = parser->evaluate (expr_string);
+      parseTree = parser->parse (expr_string);
+      result = parseTree->evaluate ();
     }
     catch (std::exception & e)
     {
       std::cout << e.what () << std::endl;
       std::getline (std::cin, expr_string);
-      delete parser;
+      delete parseTree;
       continue;
     }
 
@@ -30,5 +32,6 @@ int main (void)
     std::getline (std::cin, expr_string);
 
     delete parser;
+    delete parseTree;
   }
 }
