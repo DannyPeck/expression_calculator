@@ -58,6 +58,9 @@ each Variables derive method logic.
 ## Objects / Interfaces
 - ExpressionParser
 - Context (Object)
+- SymbolVisitor (Interface)
+    - DerivationVisitor (Object)
+- ParseTree (Object)
 - Symbol (Interface)
     - Terminal (Interface)
         - Number (Object)
