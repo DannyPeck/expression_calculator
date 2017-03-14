@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <vector>
 #include "DerivationVisitor.h"
+#include "InvalidDerivationException.h"
 #include "Context.h"
 #include "Symbol.h"
 #include "AddOperator.h"

@@ -5,9 +5,6 @@
 
 class Terminal : public Symbol
 {
-  public:
-
-    virtual ~Terminal (void) = 0;
 };
 
 #endif //EXPRESSION_CALCULATOR_TERMINAL_H
