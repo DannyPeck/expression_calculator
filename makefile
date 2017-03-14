@@ -1,8 +1,7 @@
-OBJECT_FILES = Symbol.o Variable.o Start.o Number.o Expression.o \
-               ExpressionTail.o Term.o TermTail.o Factor.o BinaryOperator.o \
-               AddOperator.o SubtractOperator.o MultiplyOperator.o DivideOperator.o \
-               LeftParenthesis.o RightParenthesis.o Context.o ExpressionParser.o ParseTree.o \
-               SymbolVisitor.o DerivationVisitor.o main.o
+OBJECT_FILES = Symbol.o Variable.o Start.o Number.o Expression.o ExpressionTail.o \
+               Term.o TermTail.o Factor.o BinaryOperator.o AddOperator.o SubtractOperator.o \
+               MultiplyOperator.o DivideOperator.o LeftParenthesis.o RightParenthesis.o \
+               Context.o ExpressionParser.o ParseTree.o SymbolVisitor.o DerivationVisitor.o main.o
 
 CFLAGS = --std=c++11 -g -c
 
