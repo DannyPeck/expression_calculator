@@ -7,10 +7,6 @@ class SubtractOperator : public BinaryOperator
 {
   public:
 
-    SubtractOperator (void);
-
-    ~SubtractOperator (void);
-
     int evaluate (int first, int second);
 
     void accept (SymbolVisitor & visitor);

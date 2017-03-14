@@ -7,10 +7,6 @@ class MultiplyOperator : public BinaryOperator
 {
   public:
 
-    MultiplyOperator (void);
-
-    ~MultiplyOperator (void);
-
     int evaluate (int first, int second);
 
     void accept (SymbolVisitor & visitor);

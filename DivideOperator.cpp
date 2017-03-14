@@ -1,14 +1,6 @@
 #include "DivideOperator.h"
 #include "DivideByZeroException.h"
 
-DivideOperator::DivideOperator (void)
-{
-}
-
-DivideOperator::~DivideOperator (void)
-{
-}
-
 int DivideOperator::evaluate (int first, int second)
 {
   if (second != 0)

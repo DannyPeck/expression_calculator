@@ -7,10 +7,6 @@ class RightParenthesis : public Terminal
 {
   public:
 
-    RightParenthesis (void);
-
-    ~RightParenthesis (void);
-
     int evaluate (void);
 
     void accept (SymbolVisitor & visitor);

@@ -16,10 +16,6 @@ class Symbol
     virtual int evaluate (void) = 0;
 
     virtual void accept (SymbolVisitor & visitor) = 0;
-
-  protected:
-
-    Symbol (void);
 };
 
 #endif //EXPRESSION_CALCULATOR_SYMBOL_H

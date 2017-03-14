@@ -7,14 +7,6 @@
 #include "DivideByZeroException.h"
 #include "InvalidDerivationException.h"
 
-ExpressionParser::ExpressionParser (void)
-{
-}
-
-ExpressionParser::~ExpressionParser (void)
-{
-}
-
 ParseTree * ExpressionParser::parse (const std::string & expression)
 {
   std::vector<std::string> * tokens = new std::vector<std::string> ();

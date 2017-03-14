@@ -7,13 +7,7 @@ class BinaryOperator : public Operator
 {
   public:
 
-    virtual ~BinaryOperator (void) = 0;
-
     virtual int evaluate (int first, int second) = 0;
-
-  protected:
-
-    BinaryOperator (void);
 
   private:
 

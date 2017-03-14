@@ -9,8 +9,6 @@ class Number : public Terminal
 
     Number (int value);
 
-    ~Number (void);
-
     int evaluate (void);
 
     void accept (SymbolVisitor & visitor);

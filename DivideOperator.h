@@ -7,10 +7,6 @@ class DivideOperator : public BinaryOperator
 {
   public:
 
-    DivideOperator (void);
-
-    ~DivideOperator (void);
-
     int evaluate (int first, int second);
 
     void accept (SymbolVisitor & visitor);

@@ -46,10 +46,6 @@ class SymbolVisitor
     virtual void visitTermTail (TermTail & termTail) = 0;
 
     virtual void visitFactor (Factor & factor) = 0;
-
-  protected:
-
-    SymbolVisitor (void);
 };
 
 #endif //EXPRESSION_CALCULATOR_SYMBOLVISITOR_H

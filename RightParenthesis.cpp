@@ -1,13 +1,5 @@
 #include "RightParenthesis.h"
 
-RightParenthesis::RightParenthesis (void)
-{
-}
-
-RightParenthesis::~RightParenthesis (void)
-{
-}
-
 int RightParenthesis::evaluate (void)
 {
   return 0;

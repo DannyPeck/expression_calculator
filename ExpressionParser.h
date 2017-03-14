@@ -11,10 +11,6 @@ class ExpressionParser
 {
   public:
 
-    ExpressionParser (void);
-
-    ~ExpressionParser (void);
-
     ParseTree * parse (const std::string & expression);
 
   private:

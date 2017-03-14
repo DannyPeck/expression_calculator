@@ -1,5 +1,5 @@
 OBJECT_FILES = Symbol.o Terminal.o Variable.o Start.o Number.o Expression.o \
-               ExpressionTail.o Term.o TermTail.o Factor.o Operator.o BinaryOperator.o \
+               ExpressionTail.o Term.o TermTail.o Factor.o BinaryOperator.o \
 							 AddOperator.o SubtractOperator.o MultiplyOperator.o DivideOperator.o \
 							 LeftParenthesis.o RightParenthesis.o Context.o ExpressionParser.o ParseTree.o \
 							 SymbolVisitor.o DerivationVisitor.o main.o
@@ -39,10 +39,7 @@ TermTail.o: Variable.o TermTail.h TermTail.cpp
 Factor.o: Variable.o Factor.h Factor.cpp
 	g++ $(C_FLAGS) Factor.cpp
 
-Operator.o: Operator.h Operator.cpp
-	g++ $(C_FLAGS) Operator.cpp
-
-BinaryOperator.o: Operator.o BinaryOperator.h BinaryOperator.cpp
+BinaryOperator.o: Terminal.o BinaryOperator.h BinaryOperator.cpp
 	g++ $(C_FLAGS) BinaryOperator.cpp
 
 AddOperator.o: BinaryOperator.o AddOperator.h AddOperator.cpp

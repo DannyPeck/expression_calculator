@@ -6,10 +6,6 @@ Number::Number (int value)
 {
 }
 
-Number::~Number (void)
-{
-}
-
 int Number::evaluate (void)
 {
   return this->value_;
