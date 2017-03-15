@@ -21,14 +21,17 @@ Factor::~Factor (void)
 
 int Factor::evaluate (void)
 {
+  int result = 0;
   if (this->expression_ != nullptr)
   {
-    return this->expression_->evaluate ();
+    result = this->expression_->evaluate ();
   }
-  else
+  else if (this->number_ != nullptr)
   {
-    return this->number_->evaluate ();
+    result = this->number_->evaluate ();
   }
+
+  return result;
 }
 
 void Factor::accept (SymbolVisitor & visitor)

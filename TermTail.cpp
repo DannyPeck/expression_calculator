@@ -21,22 +21,32 @@ TermTail::~TermTail (void)
 int TermTail::evaluate (void)
 {
   int result = 0;
-  BinaryOperator * op = this->termTail_->getOperator ();
-  if (op != nullptr)
+  if (this->factor_ != nullptr)
   {
-    try
+    if (this->termTail_ != nullptr)
     {
-      result = op->evaluate (this->factor_->evaluate (), this->termTail_->evaluate ());
+      BinaryOperator * op = this->termTail_->getOperator ();
+      if (op != nullptr)
+      {
+        try
+        {
+          result = op->evaluate (this->factor_->evaluate (), this->termTail_->evaluate ());
+        }
+        catch (DivideByZeroException & e)
+        {
+          delete op;
+          throw e;
+        }
+      }
+      else
+      {
+        result = this->factor_->evaluate ();
+      }
     }
-    catch (DivideByZeroException & e)
+    else
     {
-      delete op;
-      throw e;
+      result = this->factor_->evaluate ();
     }
-  }
-  else
-  {
-    result = this->factor_->evaluate ();
   }
 
   return result;

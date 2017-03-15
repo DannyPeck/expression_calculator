@@ -143,10 +143,7 @@ void DerivationVisitor::visitStart (Start & start)
   {
     symbols.pop ();
     Expression * expression = new Expression ();
-    LeftParenthesis * leftParenthesis = new LeftParenthesis ();
     start.setExpression (expression);
-    start.setLeftParenthesis (leftParenthesis);
-    symbols.push (leftParenthesis);
     symbols.push (expression);
   }
   else if (this->context_->is_numeric (token))

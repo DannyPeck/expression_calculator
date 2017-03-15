@@ -4,6 +4,7 @@
 #include "Variable.h"
 
 class LeftParenthesis;
+class RightParenthesis;
 class Expression;
 
 class Start : public Variable
@@ -18,13 +19,9 @@ class Start : public Variable
 
     void accept (SymbolVisitor & visitor);
 
-    void setLeftParenthesis (LeftParenthesis * leftParenthesis);
-
     void setExpression (Expression * expression);
 
   private:
-
-    LeftParenthesis * leftParenthesis_;
 
     Expression * expression_;
 };

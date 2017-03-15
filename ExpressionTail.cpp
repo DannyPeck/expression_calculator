@@ -20,14 +20,24 @@ ExpressionTail::~ExpressionTail (void)
 int ExpressionTail::evaluate (void)
 {
   int result = 0;
-  BinaryOperator * op = this->expressionTail_->getOperator ();
-  if (op != nullptr)
+  if (this->term_ != nullptr)
   {
-    result = op->evaluate (this->term_->evaluate (), this->expressionTail_->evaluate ());
-  }
-  else
-  {
-    result = this->term_->evaluate ();
+    if (this->expressionTail_ != nullptr)
+    {
+      BinaryOperator * op = this->expressionTail_->getOperator ();
+      if (op != nullptr)
+      {
+        result = op->evaluate (this->term_->evaluate (), this->expressionTail_->evaluate ());
+      }
+      else
+      {
+        result = this->term_->evaluate ();
+      }
+    }
+    else
+    {
+      result = this->term_->evaluate ();
+    }
   }
 
   return result;

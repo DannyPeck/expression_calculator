@@ -17,14 +17,24 @@ Term::~Term (void)
 int Term::evaluate (void)
 {
   int result = 0;
-  BinaryOperator * op = this->termTail_->getOperator ();
-  if (op != nullptr)
+  if (this->factor_ != nullptr)
   {
-    result = op->evaluate (this->factor_->evaluate (), this->termTail_->evaluate ());
-  }
-  else
-  {
-    result = this->factor_->evaluate ();
+    if (this->termTail_ != nullptr)
+    {
+      BinaryOperator * op = this->termTail_->getOperator ();
+      if (op != nullptr)
+      {
+        result = op->evaluate (this->factor_->evaluate (), this->termTail_->evaluate ());
+      }
+      else
+      {
+        result = this->factor_->evaluate ();
+      }
+    }
+    else
+    {
+      result = this->factor_->evaluate ();
+    }
   }
 
   return result;
